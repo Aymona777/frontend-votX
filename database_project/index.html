@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting System Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>Vote<span>Vision</span></h1>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="#"><span class="icon">📊</span> Dashboard</a></li>
+                    <li><a href="#"><span class="icon">🗳️</span> Elections</a></li>
+                    <li><a href="#"><span class="icon">👥</span> Candidates</a></li>
+                    <li><a href="#"><span class="icon">👤</span> Voters</a></li>
+                    <li><a href="#"><span class="icon">📈</span> Statistics</a></li>
+                    <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">A</div>
+                    <div class="user-details">
+                        <p class="user-name">Admin User</p>
+                        <p class="user-role">System Admin</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="current-election">
+                    <h2>Presidential Election 2024</h2>
+                    <span class="status active">Active</span>
+                </div>
+                <div class="header-actions">
+                    <button class="refresh-btn" id="refreshData">↻ Refresh Data</button>
+                </div>
+            </header>
+
+            <!-- Stats Overview -->
+            <section class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Total Votes</h3>
+                        <p class="stat-value" id="totalVotes">124,587</p>
+                    </div>
+                    <div class="stat-icon total-votes-icon">🗳️</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Voter Turnout</h3>
+                        <p class="stat-value" id="voterTurnout">64.2%</p>
+                    </div>
+                    <div class="stat-icon turnout-icon">📈</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Voting Stations</h3>
+                        <p class="stat-value" id="votingStations">42</p>
+                    </div>
+                    <div class="stat-icon stations-icon">📍</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Time Remaining</h3>
+                        <p class="stat-value" id="timeRemaining">6h 42m</p>
+                    </div>
+                    <div class="stat-icon time-icon">⏱️</div>
+                </div>
+            </section>
+
+            <!-- Results and Activity Section -->
+            <div class="dashboard-grid">
+                <!-- Results Chart -->
+                <section class="results-section">
+                    <div class="section-header">
+                        <h2>Current Results</h2>
+                        <span class="last-updated">Last updated: <span id="lastUpdated">April 22, 2025 - 14:30</span></span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="resultsChart"></canvas>
+                        <div id="chartLegend" class="chart-legend"></div>
+                    </div>
+                </section>
+
+                <!-- Recent Activity -->
+                <section class="activity-section">
+                    <div class="section-header">
+                        <h2>Recent Voting Activity</h2>
+                    </div>
+                    <ul class="activity-list" id="activityList">
+                        <li class="activity-item">
+                            <div class="activity-time">14:25</div>
+                            <div class="activity-details">
+                                <p>Vote recorded at <strong>Central Station #12</strong></p>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-time">14:22</div>
+                            <div class="activity-details">
+                                <p>Vote recorded at <strong>Downtown Station #4</strong></p>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-time">14:18</div>
+                            <div class="activity-details">
+                                <p>Vote recorded at <strong>Central Station #12</strong></p>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-time">14:15</div>
+                            <div class="activity-details">
+                                <p>Vote recorded at <strong>North District #7</strong></p>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-time">14:12</div>
+                            <div class="activity-details">
+                                <p>Vote recorded at <strong>South Station #3</strong></p>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+
+            <!-- Candidate Results -->
+            <section class="candidates-section">
+                <div class="section-header">
+                    <h2>Candidate Results</h2>
+                </div>
+                <div class="candidates-list" id="candidatesList">
+                    <div class="candidate-card">
+                        <div class="candidate-info">
+                            <div class="candidate-avatar blue">JD</div>
+                            <div class="candidate-details">
+                                <h3>Jane Doe</h3>
+                                <p>Progressive Party</p>
+                            </div>
+                        </div>
+                        <div class="candidate-result">
+                            <div class="vote-count">54,287</div>
+                            <div class="vote-percentage">
+                                <div class="progress-bar">
+                                    <div class="progress-fill blue" style="width: 43.6%"></div>
+                                </div>
+                                <span class="percentage">43.6%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="candidate-card">
+                        <div class="candidate-info">
+                            <div class="candidate-avatar red">JS</div>
+                            <div class="candidate-details">
+                                <h3>John Smith</h3>
+                                <p>Conservative Party</p>
+                            </div>
+                        </div>
+                        <div class="candidate-result">
+                            <div class="vote-count">42,325</div>
+                            <div class="vote-percentage">
+                                <div class="progress-bar">
+                                    <div class="progress-fill red" style="width: 34.0%"></div>
+                                </div>
+                                <span class="percentage">34.0%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="candidate-card">
+                        <div class="candidate-info">
+                            <div class="candidate-avatar green">AJ</div>
+                            <div class="candidate-details">
+                                <h3>Amanda Johnson</h3>
+                                <p>Green Future Party</p>
+                            </div>
+                        </div>
+                        <div class="candidate-result">
+                            <div class="vote-count">18,542</div>
+                            <div class="vote-percentage">
+                                <div class="progress-bar">
+                                    <div class="progress-fill green" style="width: 14.9%"></div>
+                                </div>
+                                <span class="percentage">14.9%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="candidate-card">
+                        <div class="candidate-info">
+                            <div class="candidate-avatar purple">RW</div>
+                            <div class="candidate-details">
+                                <h3>Robert Williams</h3>
+                                <p>Liberty Party</p>
+                            </div>
+                        </div>
+                        <div class="candidate-result">
+                            <div class="vote-count">9,433</div>
+                            <div class="vote-percentage">
+                                <div class="progress-bar">
+                                    <div class="progress-fill purple" style="width: 7.5%"></div>
+                                </div>
+                                <span class="percentage">7.5%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Voter Demographics -->
+            <section class="demographics-section">
+                <div class="section-header">
+                    <h2>Voter Demographics</h2>
+                </div>
+                <div class="demographics-container">
+                    <div class="demographic-chart">
+                        <h3>Age Distribution</h3>
+                        <canvas id="ageChart"></canvas>
+                    </div>
+                    <div class="demographic-chart">
+                        <h3>Gender Distribution</h3>
+                        <canvas id="genderChart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
